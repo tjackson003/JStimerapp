@@ -47,10 +47,11 @@ function timerHandler() {
 
 // DISPLAY TIME FUNCTION
 function displayTime() {
-    let minDouble;
-    let hourDouble;
+    let secDouble = seconds;
+    let minDouble = minutes;
+    let hourDouble = hours;
     if(seconds < 10) {
-        seconds = "0" + seconds;
+        secDouble = "0" + seconds;
     }
     if(minutes < 10) {
         minDouble = "0" + minutes;
@@ -58,5 +59,5 @@ function displayTime() {
     if(hours < 10) {
         hourDouble = "0" + hours;
     }
-    timerElement.innerHTML = hourDouble + " : " + minDouble + " : " + seconds;
-}
+    timerElement.innerHTML = hourDouble + " : " + minDouble + " : " + secDouble;
+};
