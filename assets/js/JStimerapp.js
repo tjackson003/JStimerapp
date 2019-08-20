@@ -1,9 +1,36 @@
 // TIMER
-let timer = setInterval(timerHandler, 1000);
+let timer;
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
+let timerElement = document.getElementById("timer");
 
+// BUTTONS
+let startBtn = document.getElementById("start");
+let stopBtn = document.getElementById("stop");
+let resetBtn = document.getElementById("reset");
+
+// BUTTON MECHANICS
+startBtn.addEventListener("click", function() {
+    timer = setInterval(timerHandler, 1000);
+    resetBtn.disabled = false;
+});
+
+stopBtn.addEventListener("click", function() {
+    timer = clearInterval(timer);
+    resetBtn.disabled = false;
+});
+
+resetBtn.addEventListener("click", function() {
+    timer = clearInterval(timer);
+    resetBtn.disabled = true;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    timerElement.innerHTML = "00 : 00 : 00";
+});
+
+// TIME HANDLER FUNCTION
 function timerHandler() {
     seconds++;
     if(seconds == 60) {
@@ -18,11 +45,10 @@ function timerHandler() {
     displayTime();
 };
 
+// DISPLAY TIME FUNCTION
 function displayTime() {
-    let secDouble;
     let minDouble;
     let hourDouble;
-    let timerElement = document.getElementById("timer");
     if(seconds < 10) {
         seconds = "0" + seconds;
     }
